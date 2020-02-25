@@ -38,13 +38,13 @@ export class PolygonElement {
   }
   public get ML() {
     return {
-      x: this.pointLT.x - this.thickness,
-      y: ((this.pointRT.y + this.pointLB.y) / 2) - this.thickness,
+      x: ((this.pointLT.x + this.pointLB.x) / 2) - this.thickness,
+      y: ((this.pointLT.y + this.pointLB.y) / 2) - this.thickness,
     }
   }
   public get MR() {
     return {
-      x: this.pointRT.x - this.thickness,
+      x: ((this.pointRT.x + this.pointRB.x) / 2) - this.thickness,
       y: ((this.pointRT.y + this.pointRB.y) / 2) - this.thickness,
     }
   }
@@ -55,29 +55,28 @@ export class PolygonElement {
     }
   }
   grabber = false;
-  onMouseMove(event: any, numberId: any) {
-    this.itemDisable = true;
-    console.log(event, "onMouseMove");
-    switch (numberId) {
-      case 4:
-        this.pointLB.x = event.offsetX;
-        this.pointLT.x = event.offsetX;
-        break;
-      case 2:
-        this.pointRT.x = event.offsetX;
-        this.pointRB.x = event.offsetX;
-        console.log(event, "onMouseMove");
-        break;
-      case 1:
-        this.pointRT.y = event.offsetY;
-        this.pointLT.y = event.offsetY;
-        console.log(event, "onMouseMove");
-        break;
-      case 3:
-        this.pointRB.y = event.offsetY;
-        this.pointLB.y = event.offsetY;
-        console.log(event, "onMouseMove");
-        break;
+  public get LT() {
+    return {
+      x: this.pointLT.x,
+      y: this.pointLT.y,
+    }
+  }
+  public get LB() {
+    return {
+      x: this.pointLB.x,
+      y: this.pointLB.y,
+    }
+  }
+  public get RT() {
+    return {
+      x: this.pointRT.x,
+      y: this.pointRT.y,
+    }
+  }
+  public get RB() {
+    return {
+      x: this.pointRB.x,
+      y: this.pointRB.y,
     }
   }
   onMouseMoveRect(event: any, numberId: any) {
@@ -85,34 +84,45 @@ export class PolygonElement {
     console.log(event, "onMouseMove");
     switch (numberId) {
       case 1:
-        this.pointLT.x = event.offsetX;
-        this.pointLT.y = event.offsetY;
-        console.log(event, "onMouseMove");
+        this.pointLT.x = event.event.offsetX;
+        this.pointLT.y = event.event.offsetY;
         break;
       case 2:
-        this.pointLB.x = event.offsetX;
-        this.pointLB.y = event.offsetY;
-        console.log(event, "onMouseMove");
+        this.pointRT.x = event.event.offsetX;
+        this.pointRT.y = event.event.offsetY;
         break;
       case 3:
-        this.pointRB.x = event.offsetX;
-        this.pointRB.y = event.offsetY;
-        console.log(event, "onMouseMove");
+        this.pointRB.x = event.event.offsetX;
+        this.pointRB.y = event.event.offsetY;
         break;
       case 4:
-        this.pointRT.x = event.offsetX;
-        this.pointRT.y = event.offsetY;
+        this.pointLB.x = event.event.offsetX;
+        this.pointLB.y = event.event.offsetY;
         break;
     }
   }
-  onMouseUp(event: any) {
-    console.log(event, "onMouseUp");
-    this.grabber = false;
+  onStart(event: any) {
+    this.itemDisable = true;
   }
-  onMouseDown(event: any) {
-    console.log(event, "onMouseDown");
-    this.itemDisable = false;
-    this.grabber = true;
+  onMove(event: any, numberId: any) {
+    switch (numberId) {
+      case 1:
+        this.pointRT.y += event.delta.y;
+        this.pointLT.y += event.delta.y;
+        break;
+      case 2:
+        this.pointRT.x += event.delta.x;
+        this.pointRB.x += event.delta.x;
+        break;
+      case 3:
+        this.pointRB.y += event.delta.y;
+        this.pointLB.y += event.delta.y;
+        break;
+      case 4:
+        this.pointLT.x += event.delta.x;
+        this.pointLB.x += event.delta.x;
+        break;
+    }
   }
   @Input()
   public set data(value: any) {

@@ -1,3 +1,7 @@
+  LT<input [(ngModel)]="pointLT.x">   <input [(ngModel)]="pointLT.y"><br>
+  LB<input  [(ngModel)]="pointLB.x"> <input [(ngModel)]="pointLB.y"><br>
+  RB<input  [(ngModel)]="pointRB.x"> <input [(ngModel)]="pointRB.y"><br>
+  RT <input  [(ngModel)]="pointRT.x"> <input [(ngModel)]="pointRT.y"><br>
   <svg:svg height="700" width="1500">
     <svg:g polygon-example  [data]="'abcabc'" [pointLT]="pointLT" [pointLB]="pointLB" [pointRB]="pointRB" [pointRT]="pointRT"  />
   </svg>
