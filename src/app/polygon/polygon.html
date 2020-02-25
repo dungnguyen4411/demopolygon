@@ -1,0 +1,17 @@
+    <svg:g cdkDrag   [cdkDragDisabled]="itemDisable">
+    <svg:polygon [attr.points]="Points" style="fill:#d3cf5d;" (click)="onSelect()"  />
+<svg:g [ngStyle]="{'visibility': this._select ? 'visible':'hidden'}">
+        <svg:rect id="MT" width="7" height="7" [attr.x]='MT.x'  [attr.y]='MT.y' style="fill:rgb(245, 245, 248);stroke-width:3;stroke:#cdcdcd" (mousemove)="onMouseMove($event, 1)" (mouseup)="onMouseUp($event)" (mouseout)="onMouseDown($event)" (mousedown)="onMouseDown($event)" />
+        <svg:rect id="ML" width="7" height="7" [attr.x]='ML.x'  [attr.y]='ML.y' style="fill:rgb(245, 245, 248);stroke-width:3;stroke:#cdcdcd" (mousemove)="onMouseMove($event, 4)" (mouseup)="onMouseUp($event)" (mouseout)="onMouseDown($event)" />
+        <svg:rect id="MR" width="7" height="7" [attr.x]='MR.x'  [attr.y]='MR.y' style="fill:rgb(245, 245, 248);stroke-width:3;stroke:#cdcdcd" (mousemove)="onMouseMove($event, 2)" (mouseup)="onMouseUp($event)" (mouseout)="onMouseDown($event)" />
+        <svg:rect id="MB" width="7" height="7" [attr.x]='MB.x'  [attr.y]='MB.y' style="fill:rgb(245, 245, 248);stroke-width:3;stroke:#cdcdcd" (mousemove)="onMouseMove($event, 3)" (mouseup)="onMouseUp($event)" (mouseout)="onMouseDown($event)" />
+      <svg:circle id='p0' [attr.cx]='pointLT.x'  [attr.cy]='pointLT.y' r='5'(mousemove)="onMouseMoveRect($event, 1)" (mouseup)="onMouseUp($event)" (mouseout)="onMouseDown($event)" />
+      <svg:circle id='p1' [attr.cx]='pointLB.x'[attr.cy]='pointLB.y' r='5' (mousemove)="onMouseMoveRect($event, 2)" (mouseup)="onMouseUp($event)" (mouseout)="onMouseDown($event)" />
+      <svg:circle id='p2' [attr.cx]='pointRB.x' [attr.cy]='pointRB.y' r='5'(mousemove)="onMouseMoveRect($event, 3)" (mouseup)="onMouseUp($event)" (mouseout)="onMouseDown($event)" />
+      <svg:circle id='p3'[attr.cx]='pointRT.x' [attr.cy]='pointRT.y' r='5' (mousemove)="onMouseMoveRect($event, 4)" (mouseup)="onMouseUp($event)" (mouseout)="onMouseDown($event)" />
+</svg:g>
+
+</svg:g>
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
